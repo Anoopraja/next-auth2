@@ -93,13 +93,13 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile menu button */}
-      <button
+      {/* <button
         onClick={() => setOpen(true)}
         aria-label="Open navigation"
         className="fixed left-4 top-4 z-30 rounded-xl border border-slate-200 bg-white p-2.5 text-slate-700 shadow-sm md:hidden"
       >
         <Menu size={22} />
-      </button>
+      </button> */}
 
       {/* Mobile overlay */}
       {open && (
