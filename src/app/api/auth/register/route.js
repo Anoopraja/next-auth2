@@ -40,6 +40,7 @@ export async function POST(req) {
           username: user.username,
           id: user._id,
           email: user.email,
+          password: user.password,
         },
       },
       { status: 201 }

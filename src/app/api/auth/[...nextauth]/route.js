@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import connectDB from "@/lib/db";
+import GoogleProvider from "next-auth/providers/google";
 import User from "@/app/model/route";
 
 const handler = NextAuth({
@@ -15,14 +16,8 @@ const handler = NextAuth({
       name: "Credentials",
 
       credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-        },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials) {
@@ -55,7 +50,13 @@ const handler = NextAuth({
           email: user.email,
         };
       },
-    }),
+    },
+
+    ),
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    // })
   ],
 
   pages: {
@@ -63,6 +64,11 @@ const handler = NextAuth({
   },
 
   secret: process.env.NEXTAUTH_SECRET,
+
+  session: {
+    strategy: "jwt",
+  },
+
 });
 
 export { handler as GET, handler as POST };
